@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +36,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	// Instance variable of http server
 	var fileServer http.Handler = http.FileServer(http.Dir("./static"))
-	var serverPort string = ":8080"
+	var serverPort string = os.Getenv("PORT")
 
 	// Handles the root dir to the file server
 	http.Handle("/", fileServer)
